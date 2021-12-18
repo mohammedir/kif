@@ -39,7 +39,7 @@ class WidgetsTableController extends Controller
     public function store(Request $request)
     {
         //
-        try {
+       try {
 
         widgetsTable::create([
 
@@ -95,9 +95,10 @@ class WidgetsTableController extends Controller
                 $widgets->value = $request->Editewidgetvalue,
 
 
+                $ms = $request->massage,
             ]);
-
-            return redirect()->route('Widgets.widgets');
+            session()->flash('Add', $ms);
+            return redirect()->back();
         }
 
         catch (\Exception $e){

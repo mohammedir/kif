@@ -8,6 +8,8 @@ return [
     'PageMetatitle(AR)' => 'Page Meta title(AR)',
     'PageMetadescription(EN)' => 'Page Meta description(EN)',
     'PageMetadescription(AR)' => 'Page Meta description(AR)',
+    'Metakeywords' => 'Meta keywords ',
+
 
 
 

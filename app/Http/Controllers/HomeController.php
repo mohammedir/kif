@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $users = User::all()->count();
+        return view('dashboard',compact('users'));
     }
 }

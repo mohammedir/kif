@@ -44,6 +44,16 @@ class GetNotificatiosController extends Controller
     public function store(Request $request)
     {
         //
+
+
+            getNotificatios::create([
+
+                'mobileNumber' => $request->MobileNumber
+
+            ]);
+        session()->flash('Add', 'تم اضافة الرقم بنجاح ');
+        return redirect()->back();
+
     }
 
     /**
@@ -85,8 +95,8 @@ class GetNotificatiosController extends Controller
 
             ]);
 
-
-            return redirect()->route('GitNotification.gitNotification');
+            session()->flash('Add', 'تم تعديل الرقم بنجاح ');
+            return redirect()->back();
         }
 
         catch (\Exception $e){
@@ -124,9 +134,8 @@ class GetNotificatiosController extends Controller
         $pdf = PDF::loadView('GitNotification.gitNotification',compact('gitNotification'));
         return $pdf->downloas('document.pdf');*/
 
-        $gitNotification = getNotificatios::get();
-        $pdf = PDF::loadView('GitNotification.gitNotification',[
-        ]);
+        $gitNotification = getNotificatios::all();
+        $pdf = PDF::loadView('empty');
         return $pdf->download('invoice.pdf');
 
 

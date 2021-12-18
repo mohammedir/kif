@@ -27,13 +27,16 @@
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
+
+
+
                 <div class="table-responsive">
-                    <table id="page_table" class="table table-striped table-bordered p-0">
+                    <table id="datatable" class="table table-striped table-bordered p-0">
                         <thead>
                         <tr>
                             <th>#</th>
                             <th>Name of Page</th>
-                            <th>Date</th>
+                            <th>Date  created</th>
                             <th>link</th>
                             <th>Status</th>
                             <th>option</th>
@@ -52,7 +55,7 @@
                                 <td>{{ $pages->namePage }}</td>
                                 <td>{{ $pages->created_at}}</td>
                                 <td><a href=""></a>{{$pages->pagelink}}</td>
-<!--                                <td class="text-center"><input type="checkbox"  data-toggle="toggle" data-size="xs" @if(!$pages->status == 1) checked=checked @endif  id="checkbox{{$pages->id}}"></td>
+                            <!--                                <td class="text-center"><input type="checkbox"  data-toggle="toggle" data-size="xs" @if(!$pages->status == 1) checked=checked @endif  id="checkbox{{$pages->id}}"></td>
                                -->
                                 <td class="text-center">
                                     <input data-id="{{$pages->id}}" class="toggle-class" type="checkbox" data-onstyle="success"
@@ -64,9 +67,10 @@
                                 </td>
                                 <td class="text-center">
                                     <a type="button" class="btn btn-info btn-sm"
-                                             href="{{ url('edit_page') }}/{{ $pages->keyTyp }}" name=""
-                                            title=""><i class="fa fa-edit"></i></a>
-<!--                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                       href="{{ url('edit_page') }}/{{ $pages->id }}" name=""
+                                       title=""><i class="fa fa-edit"></i></a>
+                                    <input type="hidden" name="{{$pages->id}}">
+                                <!--                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                             data-target="#delete{{ $pages->id }}"
                                             title=""><i
                                             class="fa fa-trash"></i></button>-->
@@ -77,6 +81,7 @@
                         </tbody>
                     </table>
                 </div>
+
             </div>
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class getNotificatios extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'mobileNumber'
+    ];
+
 }

@@ -49,6 +49,8 @@ Route::group(
 
     Route::get('/changeStatus', '\App\Http\Controllers\SliderController@changeSliderStatus')->name('changeStatus');
 
+    Route::post('/addslider', '\App\Http\Controllers\SliderController@store')->name('addslider');
+
     Route::get('/changePageStatus', '\App\Http\Controllers\PagesController@changePageStatus')->name('changePageStatus');
 
     Route::get('pdf_getNotification', 'GetNotificatiosController@pdf');
@@ -61,7 +63,11 @@ Route::group(
 
     });
 
+    Route::resource('settings','\App\Http\Controllers\SettingsController');
 
+    Route::resource('menus','\App\Http\Controllers\MenusController');
+
+    Route::post('ckeditor/upload', 'CKEditorController@upload')->name('ckeditor.image-upload');
 
 
 

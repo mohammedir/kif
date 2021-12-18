@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    empty
+    Widgets
 @stop
 @endsection
 @section('page-header')
@@ -13,8 +13,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                <li class="breadcrumb-item"><a href="#" class="default-color">Home</a></li>
-                <li class="breadcrumb-item active">My widgets static Elfsight</li>
+                <li class="breadcrumb-item active">{{trans('widgets.Mywidgets')}}</li>
             </ol>
         </div>
     </div>
@@ -22,6 +21,28 @@
 <!-- breadcrumb -->
 @endsection
 @section('content')
+
+    @if (session()->has('Add'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('Add') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+
+        </div>
+    @endif
 <!-- row -->
 <div class="row">
     <div class="col-md-12 mb-30">
@@ -38,10 +59,10 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Widget Name</th>
-                            <th>Static Elfsight Code</th>
-                            <th>Last update</th>
-                            <th>Option</th>
+                            <th>{{trans('widgets.WidgetName')}}</th>
+                            <th>{{trans('widgets.Code')}}</th>
+                            <th>{{trans('widgets.update')}}</th>
+                            <th>{{trans('widgets.Option')}}</th>
 
 
                         </tr>
@@ -71,7 +92,7 @@
                                         <div class="modal-header">
                                             <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                                 id="exampleModalLabel">
-                                                Edit the data value
+                                                {{trans('widgets.EditTitle')}}
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
@@ -86,7 +107,7 @@
 
                                                 <div class="row">
                                                     <div class="col">
-                                                        <label for="Name" class="mr-sm-2">Widget Name(EN)
+                                                        <label for="Name" class="mr-sm-2">{{trans('widgets.EditName')}}
                                                             :</label>
                                                         <input id="Name" type="text" name="widgetname_en" class="form-control" value="{{$widgets->title}}" readonly>
                                                         <input type="hidden" name="id" value="{{$widgets->id}}">
@@ -96,13 +117,14 @@
                                                 <!-- Page Value-->
                                                 <div class="form-group">
                                                     <label
-                                                        for="exampleFormControlTextarea1">Widget Value
+                                                        for="exampleFormControlTextarea1">{{trans('widgets.EditCode')}}
                                                         :</label>
                                                     <textarea class="form-control" name="Editewidgetvalue"
                                                               id="exampleFormControlTextarea1"
-                                                              rows="3">{{ $widgets->value }}</textarea>
+                                                              rows="5">{{ $widgets->value }}</textarea>
                                                 </div>
                                                 <br><br>
+                                                <input type="hidden" name="massage" value="{{trans('widgets.massage')}}">
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -122,7 +144,7 @@
                         @endforeach
                     </table>
                 </div>
-                <p>Page content goes here<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+            </div>
             </div>
         </div>
     </div>

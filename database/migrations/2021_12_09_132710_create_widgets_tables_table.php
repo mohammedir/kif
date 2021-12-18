@@ -17,8 +17,7 @@ class CreateWidgetsTablesTable extends Migration
             $table->id();
             $table->integer('key');
             $table->string('title');
-            $table->text('value_ar');
-            $table->text('value_en');
+            $table->text('value');
             $table->timestamps();
         });
     }

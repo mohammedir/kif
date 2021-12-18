@@ -49,8 +49,8 @@ class SliderController extends Controller
         if ($request->type == 1){
 
             $this->validate($request, [
-                'desktop' => 'mimes:jpeg,png,jpg,gif|dimensions:width=1920,height=1920|max:2048',
-                'mobile'  => 'mimes:jpeg,png,jpg,gif|dimensions:width=1000,height=1000|max:2048',
+                'desktop' => 'mimes:jpeg,png,jpg,gif|max:2048',
+                'mobile'  => 'mimes:jpeg,png,jpg,gif|max:2048',
 /*|dimensions:width=1920,height=1920*/
             ], [
                 'desktop.mimes' => 'صيغة المرفق يجب ان تكون   gif, jpeg , png , jpg',
@@ -64,8 +64,8 @@ class SliderController extends Controller
         }else{
 
             $this->validate($request, [
-                'desktop' => 'mimes:mp4|max:20480',
-                'mobile'  => 'mimes:mp4|max:20480',
+                'desktop' => 'mimes:mp4|dimensions:width=1920,height=1920|max:20480',
+                'mobile'  => 'mimes:mp4|dimensions:width=1000,height=1000|max:20480',
 
             ], [
                 'desktop.mimes' => 'صيغة المرفق يجب ان تكون   mp4',
@@ -91,7 +91,7 @@ class SliderController extends Controller
                 'type' => $request->type,
                 'DesktopDevice' => $file_nameDesktop,
                 'MobileDevice'  => $file_nameMobile,
-                'status' => $request->Sliderchecbox
+                'status' => 1
             ]);
 
             // move pic
@@ -148,9 +148,15 @@ class SliderController extends Controller
      * @param  \App\slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(slider $slider)
+    public function destroy(Request $request)
     {
         //
+
+        $id = $request->notification_id;
+        $Notification_id = slider::where('id', $id)->first();
+
+        $Notification_id->forceDelete();
+        return redirect('/slider');
     }
 
     public function changeSliderStatus(Request $request){

@@ -61,13 +61,13 @@ class PagesController extends Controller
      * @param  \App\Models\pages  $pages
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
         //
 
-        $editpages = pages::findOrFail($id);;
+       $editpages = pages::findOrFail($id);;
 
-        if($id == 1){
+/*        if($id == 1){
            return view('Homepage.Home',compact('id','editpages'));
         }elseif ($id == 2){
            return view('Company.company',compact('id','editpages'));
@@ -76,7 +76,9 @@ class PagesController extends Controller
 
         }elseif ($id == 4){
             return view('Events.events',compact('id','editpages'));
-        }
+        }*/
+        return view('Homepage.Home',compact('id','editpages'));
+
 
 
     }
@@ -99,7 +101,7 @@ class PagesController extends Controller
             $page->Pagetitle = ['en'=> $request->pagetitle_en , 'ar'=> $request->pagetitle_ar],
             $page->Metatitle = ['en'=> $request->Metatitle_en , 'ar'=> $request->Metatitle_ar],
             $page->Metadescription = ['en'=> $request->Metadescription_en , 'ar'=> $request->Metadescription_ar],
-
+            $page->staticpages = $request->wysiwygeditor,
 
         ]);
 
